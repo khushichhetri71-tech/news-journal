@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #faf6ee;
+  --ink: #3d3a33;
+  --margin-line: rgba(224, 101, 101, 0.4);
+  --line: 28px; /* rule spacing — all note text locks to this line height */
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --font-hand: var(--font-patrick-hand);
+  --font-heading: var(--font-caveat);
+}
+
+body {
+  background-color: var(--paper);
+  /* faint dot-grid, like a bullet journal page */
+  background-image: radial-gradient(
+    rgba(120, 108, 85, 0.14) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  color: var(--ink);
+  font-family: var(--font-patrick-hand), "Comic Sans MS", "Comic Sans", cursive;
+}
+
+/* ── section notes ─────────────────────────────────────────────────────── */
+/* Each note sets --note-bg / --note-header / --note-accent / --note-rule   */
+
+.note {
+  background-color: var(--note-bg);
+}
+
+.note-header {
+  background-color: var(--note-header);
+}
+
+/* Ruled paper: horizontal rules every --line px + a red margin line.
+   Text inside must keep line-height: var(--line) and vertical margins in
+   multiples of it, so every line of writing sits exactly on a rule. */
+.note-body {
+  line-height: var(--line);
+  font-size: 1.0625rem;
+  background-image:
+    linear-gradient(
+      to right,
+      transparent 34px,
+      var(--margin-line) 34px,
+      var(--margin-line) 36px,
+      transparent 36px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--line) - 1px),
+      var(--note-rule) calc(var(--line) - 1px),
+      var(--note-rule) var(--line)
+    );
+}
+
+/* compact ruled body for the 2×2 preview tiles */
+.note-body-compact {
+  line-height: 26px;
+  font-size: 1rem;
+  background-image:
+    linear-gradient(
+      to right,
+      transparent 28px,
+      var(--margin-line) 28px,
+      var(--margin-line) 30px,
+      transparent 30px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 25px,
+      var(--note-rule) 25px,
+      var(--note-rule) 26px
+    );
+}
+
+/* washi tape holding each note to the page */
+.tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  z-index: 10;
+  width: 92px;
+  height: 26px;
+  transform: translateX(-50%) rotate(-2deg);
+  background: rgba(255, 255, 255, 0.45);
+  border-left: 1px dashed rgba(0, 0, 0, 0.12);
+  border-right: 1px dashed rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+}
+
+/* little journal checkbox before each entry */
+.bullet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: -3px;
+  font-size: 12px;
+  color: var(--note-accent);
+  border: 1.5px solid var(--note-accent);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.55);
+}

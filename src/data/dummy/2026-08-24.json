@@ -1,0 +1,145 @@
+{
+  "date": "2026-08-24",
+  "sections": {
+    "national": [
+      {
+        "title": "Monsoon session ends on a stormy note",
+        "summary": "Parliament wrapped up its monsoon session a day early after repeated adjournments over the electoral rolls debate. Twelve bills were passed in total, including the long-pending cooperative societies amendment. Both houses will reconvene for the winter session in the last week of November.",
+        "source_name": "The Hindu",
+        "source_url": "https://www.thehindu.com"
+      },
+      {
+        "title": "Cabinet clears new EV battery policy",
+        "summary": "The Union Cabinet approved a production-linked incentive scheme for locally manufactured EV battery cells worth ₹18,000 crore. The scheme targets 50 GWh of domestic capacity by 2030 and requires 60% local value addition within five years. Three states have already announced land parcels for anchor plants.",
+        "source_name": "Times of India",
+        "source_url": "https://timesofindia.indiatimes.com"
+      },
+      {
+        "title": "Bengaluru Metro's full Yellow Line opens",
+        "summary": "The complete 19-km Yellow Line from RV Road to Bommasandra opened to the public this morning, cutting the Electronic City commute to under 35 minutes. Trains will run at 8-minute intervals initially, with driverless operation planned by December. Ridership on day one crossed 1.2 lakh.",
+        "source_name": "NDTV",
+        "source_url": "https://www.ndtv.com"
+      },
+      {
+        "title": "Heavy rains batter Himachal, highways shut",
+        "summary": "Cloudbursts in Kullu and Mandi districts triggered landslides that closed the Chandigarh–Manali highway at four points. Nearly 200 tourists were moved to relief camps overnight and no casualties have been reported. The IMD has issued a red alert for the region for the next 48 hours.",
+        "source_name": "The Hindu",
+        "source_url": "https://www.thehindu.com"
+      },
+      {
+        "title": "UPI crosses 20 billion monthly transactions",
+        "summary": "UPI processed 20.4 billion transactions in July, a new record and nearly double the volume from two years ago. Small-value offline payments and credit-line-on-UPI drove most of the growth. NPCI said international acceptance now covers nine countries after Qatar went live this month.",
+        "source_name": "Times of India",
+        "source_url": "https://timesofindia.indiatimes.com"
+      },
+      {
+        "title": "Census 2027 house-listing begins in October",
+        "summary": "The Registrar General announced that house-listing for Census 2027 will start on October 1 across all states. This will be India's first digital-first census, with enumerators using a mobile app and citizens able to self-enumerate online. The population count itself is scheduled for February 2027.",
+        "source_name": "NDTV",
+        "source_url": "https://www.ndtv.com"
+      },
+      {
+        "title": "IIT placements open to non-engineering degrees",
+        "summary": "Five IITs will allow companies to hire from their new four-year science and design programmes in this placement season for the first time. The move follows last year's NEP-aligned degree restructuring. Early registrations from recruiters are up 14% over last year.",
+        "source_name": "The Hindu",
+        "source_url": "https://www.thehindu.com"
+      }
+    ],
+    "international": [
+      {
+        "title": "Climate summit ends with a methane pact",
+        "summary": "The Nairobi climate summit closed with 118 countries agreeing to cut methane emissions 35% by 2035, the first binding target for the gas. The deal includes a $40 billion fund for plugging abandoned oil wells, though the three largest emitters signed only partial commitments. Verification will use open satellite data.",
+        "source_name": "BBC",
+        "source_url": "https://www.bbc.com/news"
+      },
+      {
+        "title": "Chip factory race heats up in Southeast Asia",
+        "summary": "Vietnam and Malaysia both announced multi-billion-dollar semiconductor packaging plants within hours of each other, backed by rival US and Japanese consortiums. Analysts say the region could handle a fifth of global chip assembly by 2030. India's Tata-Sanand fab was cited as the trigger for the accelerating timeline.",
+        "source_name": "Reuters",
+        "source_url": "https://www.reuters.com"
+      },
+      {
+        "title": "Ceasefire talks resume in Cairo",
+        "summary": "Negotiators returned to Cairo for a fourth round of ceasefire talks, with mediators calling the mood 'cautiously constructive'. A phased 60-day truce proposal is on the table, tied to staged prisoner exchanges. A joint statement is expected within the week if the first phase is agreed.",
+        "source_name": "Al Jazeera",
+        "source_url": "https://www.aljazeera.com"
+      },
+      {
+        "title": "Japan launches lunar cargo mission",
+        "summary": "JAXA's HTV-L cargo lander lifted off successfully from Tanegashima, carrying supplies for the planned international lunar south-pole station. It is the first of three cargo flights scheduled before crewed missions begin in 2028. The lander will attempt a precision touchdown within 100 metres of the target site.",
+        "source_name": "BBC",
+        "source_url": "https://www.bbc.com/news"
+      },
+      {
+        "title": "Europe swelters in late-August heatwave",
+        "summary": "Temperature records fell in Spain, France and Italy as a heat dome pushed readings past 44°C for a third straight day. Wildfires forced evacuations near Athens and in Portugal's Algarve region. Meteorologists expect relief from an Atlantic front by Thursday.",
+        "source_name": "Reuters",
+        "source_url": "https://www.reuters.com"
+      }
+    ],
+    "sports": [
+      {
+        "title": "India seal ODI series 2–1 in Colombo",
+        "summary": "India chased down 287 with four wickets and eleven balls to spare to take the series against Sri Lanka. The vice-captain anchored the chase with an unbeaten 94, his third consecutive fifty-plus score. The teams now move to a three-match T20I leg starting Wednesday.",
+        "source_name": "ESPNcricinfo",
+        "source_url": "https://www.espncricinfo.com"
+      },
+      {
+        "title": "Hockey: India win Asian Champions Trophy",
+        "summary": "The Indian men's hockey team beat Korea 3–1 in the final in Rajgir to defend their Asian Champions Trophy title. The drag-flicker finished as the tournament's top scorer with nine goals. It is India's fourth title overall and second on home soil.",
+        "source_name": "ESPN",
+        "source_url": "https://www.espn.in"
+      },
+      {
+        "title": "Neeraj breaches 90m barrier again",
+        "summary": "Neeraj Chopra threw 90.41m at the Zurich Diamond League, his second career throw over 90 metres, finishing second behind the world champion. The result seals his qualification for next month's Diamond League final. He confirmed he will skip the Continental Tour meet to manage a minor groin niggle.",
+        "source_name": "ESPN",
+        "source_url": "https://www.espn.in"
+      },
+      {
+        "title": "Premier League: leaders drop first points",
+        "summary": "The defending champions were held 2–2 at home by a newly promoted side after conceding a 94th-minute equaliser. The result leaves three teams level on points at the top after three rounds. Two red cards and a disallowed winner made it the weekend's most chaotic fixture.",
+        "source_name": "BBC Sport",
+        "source_url": "https://www.bbc.com/sport"
+      },
+      {
+        "title": "Indian teen enters Chess Candidates",
+        "summary": "A 17-year-old Indian grandmaster qualified for the Candidates tournament by winning the FIDE Grand Swiss in Douglas. He becomes the third Indian in the eight-player field, an unprecedented showing for one country. The Candidates will be held in Madrid next April.",
+        "source_name": "ESPN",
+        "source_url": "https://www.espn.in"
+      }
+    ],
+    "defence": [
+      {
+        "title": "Tejas Mk2 completes maiden flight",
+        "summary": "The Tejas Mk2 prototype flew for 28 minutes from HAL's Bengaluru facility, meeting all test objectives on its first sortie. The Mk2 adds a more powerful GE-414 engine, greater payload and indigenous AESA radar. HAL is targeting certification by 2029 with the IAF committed to six squadrons.",
+        "source_name": "PIB Defence",
+        "source_url": "https://pib.gov.in"
+      },
+      {
+        "title": "INS Visakhapatnam leads Indo-Pacific exercise",
+        "summary": "The destroyer INS Visakhapatnam led a four-nation maritime exercise in the South China Sea alongside ships from Japan, Australia and the Philippines. Drills covered anti-submarine warfare and joint replenishment at sea. It is the Eastern Fleet's third overseas deployment this year.",
+        "source_name": "The Hindu",
+        "source_url": "https://www.thehindu.com"
+      },
+      {
+        "title": "Agni-Prime night trial succeeds",
+        "summary": "The Strategic Forces Command carried out a successful night-time user trial of the Agni-Prime ballistic missile from Abdul Kalam Island. The two-stage missile met all mission parameters, validated by ship-borne tracking in the Bay of Bengal. This was the missile's second user trial after formal induction.",
+        "source_name": "PIB Defence",
+        "source_url": "https://pib.gov.in"
+      },
+      {
+        "title": "Defence exports cross ₹25,000 crore",
+        "summary": "India's defence exports touched ₹25,400 crore in the first five months of the fiscal year, already 80% of last year's total. BrahMos deliveries to the Philippines and artillery shell orders from Europe drove the surge. The ministry reaffirmed its ₹50,000 crore annual export target by 2029.",
+        "source_name": "idrw.org",
+        "source_url": "https://idrw.org"
+      },
+      {
+        "title": "Army inducts swarm loitering munitions",
+        "summary": "The Army inducted its first batch of indigenously built swarm loitering munitions into two forward corps. Each unit can loiter for 40 minutes and strike designated targets autonomously after human authorisation. A follow-on order for high-altitude variants is in advanced negotiation.",
+        "source_name": "Livefist",
+        "source_url": "https://www.livefistdefence.com"
+      }
+    ]
+  }
+}

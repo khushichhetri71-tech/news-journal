@@ -1,0 +1,85 @@
+{
+  "date": "2026-08-23",
+  "sections": {
+    "national": [
+      {
+        "title": "Vande Bharat sleeper hits the tracks",
+        "summary": "The first Vande Bharat sleeper trainset began commercial service on the Delhi–Mumbai route, covering the distance overnight in under 12 hours. All 16 coaches sold out for the first week within hours of booking opening. Ten more rakes are scheduled for delivery this fiscal year.",
+        "source_name": "Times of India",
+        "source_url": "https://timesofindia.indiatimes.com"
+      },
+      {
+        "title": "Supreme Court reserves stubble-burning order",
+        "summary": "The Supreme Court reserved its order on a fresh framework for stubble-burning penalties after two days of hearings. The bench pressed Punjab and Haryana on why subsidised residue machinery is underused. An order is expected before the harvest season begins in October.",
+        "source_name": "The Hindu",
+        "source_url": "https://www.thehindu.com"
+      },
+      {
+        "title": "Digital consent law rules notified",
+        "summary": "The government notified the final rules under the data protection act, giving companies 18 months to comply. Consent managers must now register with the Data Protection Board, and children's data rules were tightened over the draft version. Industry bodies called the timeline workable but flagged audit costs.",
+        "source_name": "NDTV",
+        "source_url": "https://www.ndtv.com"
+      }
+    ],
+    "international": [
+      {
+        "title": "Fed signals September rate cut",
+        "summary": "The US Federal Reserve chair used the Jackson Hole speech to signal a quarter-point cut at the September meeting, citing a cooling labour market. Markets rallied, with emerging-market currencies including the rupee gaining sharply. Two more cuts are now priced in before year-end.",
+        "source_name": "Reuters",
+        "source_url": "https://www.reuters.com"
+      },
+      {
+        "title": "Antarctic ice shelf calves record berg",
+        "summary": "A 4,200 sq km iceberg calved off the Ross Ice Shelf, the largest recorded this decade. Scientists say the calving was part of a natural cycle but noted the shelf's grounding line has retreated 11 km since 2020. Shipping routes in the Southern Ocean are unaffected for now.",
+        "source_name": "BBC",
+        "source_url": "https://www.bbc.com/news"
+      },
+      {
+        "title": "African Union backs single air market",
+        "summary": "Twenty-eight African nations signed the single aviation market protocol in Addis Ababa, removing bilateral route restrictions between members. Analysts expect intra-Africa fares to fall by up to a quarter within three years. Implementation begins with a pilot group of twelve countries in January.",
+        "source_name": "Al Jazeera",
+        "source_url": "https://www.aljazeera.com"
+      }
+    ],
+    "sports": [
+      {
+        "title": "India A sweep unofficial Tests",
+        "summary": "India A completed a 2–0 sweep of Australia A in Mackay, bowling the hosts out for 187 on the final day. The left-arm spinner took a ten-wicket match haul, pushing his case for the senior Test squad. The selectors meet next week to pick the squad for the home series.",
+        "source_name": "ESPNcricinfo",
+        "source_url": "https://www.espncricinfo.com"
+      },
+      {
+        "title": "Badminton: Sindhu reaches Worlds semis",
+        "summary": "PV Sindhu beat the third seed in straight games to reach her sixth World Championships semifinal. She faces the defending champion next, against whom she holds a 5–4 career record. A medal is already assured, her first at the Worlds since 2019.",
+        "source_name": "ESPN",
+        "source_url": "https://www.espn.in"
+      },
+      {
+        "title": "F1: home hero takes Dutch GP pole",
+        "summary": "The championship leader took pole at Zandvoort by two-tenths ahead of his title rival. Rain is forecast for race day, which stewards say could bring the first wet start of the season. The top two are separated by just nine points in the standings.",
+        "source_name": "BBC Sport",
+        "source_url": "https://www.bbc.com/sport"
+      }
+    ],
+    "defence": [
+      {
+        "title": "Rafale-M deal signed for Navy",
+        "summary": "India and France signed the government-to-government contract for 26 Rafale-M fighters for the Navy's carriers. Deliveries begin in 2028 with weapons integration done partly in India. The deal includes performance-based logistics support for ten years.",
+        "source_name": "The Hindu",
+        "source_url": "https://www.thehindu.com"
+      },
+      {
+        "title": "DRDO tests hypersonic cruise demonstrator",
+        "summary": "DRDO conducted a successful test of its scramjet-powered hypersonic technology demonstrator, sustaining Mach 6 flight for over 200 seconds. The flight validated indigenous fuel and thermal materials developed after the 2023 ground campaign. A weaponised programme decision is expected next year.",
+        "source_name": "idrw.org",
+        "source_url": "https://idrw.org"
+      },
+      {
+        "title": "Coast Guard commissions offshore patrol vessel",
+        "summary": "The Indian Coast Guard commissioned ICGS Samarth-class vessel 'Sachet-II' at Goa Shipyard, the fourth of seven in the series. The 105-metre vessel carries an integral helicopter and will patrol the western seaboard. Two more vessels in the class are scheduled for delivery within a year.",
+        "source_name": "PIB Defence",
+        "source_url": "https://pib.gov.in"
+      }
+    ]
+  }
+}
