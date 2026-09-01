@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Caveat, Patrick_Hand } from "next/font/google";
+import Analytics from "@/components/Analytics";
 import "./globals.css";
 
 const patrickHand = Patrick_Hand({
@@ -25,7 +26,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${patrickHand.variable} ${caveat.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

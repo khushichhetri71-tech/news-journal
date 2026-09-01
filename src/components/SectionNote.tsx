@@ -66,7 +66,10 @@ export default function SectionNote({
                   href={a.source_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="whitespace-nowrap text-[var(--note-accent)] underline decoration-wavy decoration-1 underline-offset-4"
+                  data-ga="article_link_click"
+                  data-ga-section={section}
+                  data-ga-source={a.source_name}
+                  className="text-[var(--note-accent)] underline decoration-wavy decoration-1 underline-offset-4 [overflow-wrap:anywhere]"
                 >
                   {a.source_name} ↗
                 </a>

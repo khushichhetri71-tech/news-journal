@@ -1,49 +1,84 @@
 # The Daily Doodle 📰
 
 A daily news digest that looks like a middle-school journal. Four sections
-(National 🇮🇳, International 🌍, Sports ⚽, Defence ✈️), each a pastel ruled
-note with the day's stories in 3–4 complete sentences and a link to the
-original source. One "edition" per calendar day, browsable by date — like
-reading yesterday's paper.
+(National 🇮🇳, International 🌍, Sports ⚽, Defence ✈️) shown as a 2×2 grid of
+pastel ruled notes; tap a note to open the full section. Each story is 3–4
+complete sentences with a link to the original source. One "edition" per
+IST calendar day, browsable by date — like reading yesterday's paper.
 
-## Run it
+## How it works
+
+```
+GitHub Actions cron (00:05 IST)                Next.js site (Vercel)
+   scripts/fetch-news.mjs                          reads by date
+        │                                               ▲
+   RSS per section                                      │
+   → filter to the IST day                              │
+   → dedupe → top 7/section        ┌──────────────┐     │
+   → summarize (Gemini)  ─────────▶│  Supabase    │─────┘
+   → write one edition             │  (Postgres)  │
+                                    └──────────────┘
+```
+
+- **Frontend** — Next.js (App Router) + Tailwind, deploys on Vercel.
+- **Backend** — no server. A nightly script writes to Supabase Postgres; the
+  site reads from it. `src/lib/news.ts` is the only data-access file — if
+  Supabase env vars are absent it falls back to dummy JSON in `src/data/dummy`,
+  so local dev works with zero setup.
+- **Content** — `scripts/fetch-news.mjs` pulls RSS (Google News search per
+  section + optional direct feeds in `scripts/feeds.json`), keeps the target
+  IST day, dedupes by title, takes the top 7, and summarizes each with Gemini.
+- **Analytics** — GA4, on only if `NEXT_PUBLIC_GA_ID` is set. Custom events:
+  `section_open`, `article_link_click`, `date_change`.
+
+## Run locally
 
 ```bash
 npm install
-npm run dev   # → http://localhost:3000
+npm run dev          # → the port it prints (3000 if free)
 ```
 
-Currently renders **dummy data** from `src/data/dummy/*.json` (two sample
-days). The stories in there are made up — placeholders until the real
-pipeline lands.
+With no `.env.local`, it renders the dummy sample days. To use real data,
+`cp .env.example .env.local` and fill it in (see below).
 
-## How it's put together
+## Backend setup
 
-- `src/lib/news.ts` — the data layer. The only file that knows where
-  editions live. Currently reads the dummy JSON; will be swapped to
-  Supabase queries without touching any UI code.
-- `src/lib/sections.ts` — section labels, pastel themes, doodle assignments.
-- `src/components/SectionNote.tsx` — one ruled note per section; entries
-  at positions 3/5/7 get a doodle.
-- `src/components/Sketch.tsx` — hand-drawn-style inline SVGs (jet, tank,
-  ship, football, globe, India Gate…).
-- `src/app/day/[date]/page.tsx` — any edition by date; `/` shows the latest.
+**1. Supabase** — create a free project (Mumbai region). In **SQL Editor**,
+paste and run `supabase/schema.sql`. From **Settings → API** copy:
+- Project URL → `NEXT_PUBLIC_SUPABASE_URL`
+- `anon` `public` key → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `service_role` key → `SUPABASE_SERVICE_ROLE_KEY` (secret — script only)
 
-The ruled-paper effect: `.note-body` in `globals.css` paints rules every
-28px with the red margin line, and all note text keeps
-`line-height: 28px` (margins in multiples of 28px) so writing sits exactly
-on the lines.
+**2. Gemini** — get a free API key from Google AI Studio → `GEMINI_API_KEY`.
+
+**3. Compile an edition:**
+```bash
+node scripts/fetch-news.mjs --dry-run                 # print, no DB, no keys needed
+node --env-file=.env.local scripts/fetch-news.mjs     # write to Supabase
+node --env-file=.env.local scripts/fetch-news.mjs --date=2026-08-31
+```
+
+## Deploy
+
+- **Vercel** — import the repo, add `NEXT_PUBLIC_SUPABASE_URL`,
+  `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and optionally `NEXT_PUBLIC_GA_ID`.
+- **Cron** — `.github/workflows/fetch-news.yml` runs at **00:05 IST** daily
+  (and via the manual "Run workflow" button). Add repo **Actions secrets**:
+  `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `GEMINI_API_KEY`.
+
+## Known v1 limitations (future improvements)
+
+- Source links are Google News redirect URLs (they open the real article).
+- Near-duplicate stories from different outlets can slip past exact-title
+  dedupe; summaries are built from the feed snippet, not full article text.
+- Broad section queries occasionally cross topics. Tune `scripts/feeds.json`.
 
 ## Roadmap
 
-- [x] **Phase 1 — FE skeleton** with dummy data (this)
-- [ ] **Phase 2 — Supabase**: free project, `editions` + `articles` tables,
-      public-read RLS
-- [ ] **Phase 3 — fetch script**: RSS per section → filter to the IST
-      calendar day → dedupe → top 6–8/section → 3–4-sentence summaries →
-      insert
-- [ ] **Phase 4 — wire FE to Supabase** (rewrite `lib/news.ts` only)
-- [ ] **Phase 5 — ship**: GitHub Actions cron `35 18 * * *` (= 00:05 IST,
-      compiles the just-ended day) + Vercel deploy
-- [ ] **Phase 6 — GA4** (page views, `article_link_click`, `date_change`)
-      + polish
+- [x] Phase 1 — FE skeleton + journal UI (dummy data)
+- [x] Phase 2 — Supabase schema + RLS (`supabase/schema.sql`)
+- [x] Phase 3 — fetch/dedupe/summarize script (`scripts/fetch-news.mjs`)
+- [x] Phase 4 — FE reads Supabase (dummy fallback)
+- [x] Phase 5 — GitHub Actions cron + Vercel deploy config
+- [x] Phase 6 — GA4 events
+- [ ] Live: plug in keys, run the first real edition, deploy

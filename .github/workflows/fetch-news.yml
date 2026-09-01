@@ -1,0 +1,24 @@
+name: Compile daily edition
+
+on:
+  schedule:
+    # 00:05 IST = 18:35 UTC the previous day. Compiles the just-ended IST day.
+    - cron: "35 18 * * *"
+  workflow_dispatch: {} # manual "Run workflow" button, handy for testing
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+      - name: Compile and write the edition
+        run: node scripts/fetch-news.mjs
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-3.6-flash

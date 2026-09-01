@@ -5,6 +5,8 @@ import { getEdition } from "@/lib/news";
 import { prettyDate } from "@/lib/format";
 import { SECTION_KEYS, type SectionKey } from "@/lib/types";
 
+export const revalidate = 1800;
+
 function isSectionKey(s: string): s is SectionKey {
   return (SECTION_KEYS as readonly string[]).includes(s);
 }

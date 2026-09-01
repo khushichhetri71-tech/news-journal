@@ -32,6 +32,8 @@ export default function SectionCard({
       href={`/day/${date}/${section}`}
       style={noteVars}
       aria-label={`Open ${label} news`}
+      data-ga="section_open"
+      data-ga-section={section}
       className={`note group relative flex min-w-0 flex-col rounded-2xl shadow-[3px_5px_14px_rgba(90,75,50,0.18)] transition-transform hover:-translate-y-1 hover:rotate-0 focus-visible:-translate-y-1 ${
         tilt % 2 === 0 ? "-rotate-[0.5deg]" : "rotate-[0.6deg]"
       }`}

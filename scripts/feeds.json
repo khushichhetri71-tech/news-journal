@@ -1,0 +1,35 @@
+{
+  "_comment": "Per-section news sources. `directFeeds` are raw RSS URLs (rich descriptions + clean article links). `query`, if present, adds a Google News RSS search as a supplement (used for defence, where dedicated feeds are thin). A feed that fails is skipped, not fatal.",
+  "sections": {
+    "national": {
+      "directFeeds": [
+        "https://feeds.feedburner.com/ndtvnews-india-news",
+        "https://www.thehindu.com/news/national/feeder/default.rss",
+        "https://timesofindia.indiatimes.com/rssfeeds/-2128936835.cms"
+      ]
+    },
+    "international": {
+      "directFeeds": [
+        "https://feeds.bbci.co.uk/news/world/rss.xml",
+        "https://feeds.feedburner.com/ndtvnews-world-news",
+        "https://www.thehindu.com/news/international/feeder/default.rss",
+        "https://timesofindia.indiatimes.com/rssfeeds/296589292.cms"
+      ]
+    },
+    "sports": {
+      "directFeeds": [
+        "https://feeds.feedburner.com/ndtvsports-latest",
+        "https://www.thehindu.com/sport/feeder/default.rss",
+        "https://timesofindia.indiatimes.com/rssfeeds/4719148.cms"
+      ]
+    },
+    "defence": {
+      "query": "India defence OR military OR DRDO OR army OR navy OR IAF OR BrahMos",
+      "directFeeds": [
+        "https://idrw.org/feed/",
+        "https://www.livefistdefence.com/feed"
+      ]
+    }
+  },
+  "perSection": 7
+}

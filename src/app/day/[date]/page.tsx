@@ -2,6 +2,8 @@ import Link from "next/link";
 import EditionView from "@/components/EditionView";
 import { getAvailableDates, getEdition } from "@/lib/news";
 
+export const revalidate = 1800;
+
 export default async function DayPage({
   params,
 }: {

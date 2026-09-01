@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { track } from "@/lib/analytics";
 
 export default function DateNav({
   dates,
@@ -14,7 +15,10 @@ export default function DateNav({
   const prev = idx > 0 ? dates[idx - 1] : null;
   const next = idx >= 0 && idx < dates.length - 1 ? dates[idx + 1] : null;
 
-  const go = (date: string) => router.push(`/day/${date}`);
+  const go = (date: string) => {
+    track("date_change", { date });
+    router.push(`/day/${date}`);
+  };
 
   const arrowCls =
     "rounded-lg border border-black/10 bg-white/70 px-3 py-1 text-lg shadow-sm transition hover:bg-white disabled:opacity-30";

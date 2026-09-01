@@ -1,6 +1,9 @@
 import EditionView from "@/components/EditionView";
 import { getAvailableDates, getEdition } from "@/lib/news";
 
+// Editions never change after they're compiled; re-check for a newer one hourly.
+export const revalidate = 1800;
+
 export default async function Home() {
   const dates = await getAvailableDates();
   const latest = dates.at(-1);
