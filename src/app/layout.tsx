@@ -15,9 +15,9 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "The Daily Doodle 📰",
+  title: "The Apple Times 🍎",
   description:
-    "Yesterday's news, in my journal — national, international, sports and defence, a few lines each.",
+    "A daily news digest — national, international, sports and defence, a few lines each.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

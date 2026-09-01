@@ -15,10 +15,10 @@ export default function EditionView({
     <main className="mx-auto w-full min-w-0 max-w-4xl px-4 pb-16 pt-8 sm:px-6">
       <header className="mb-8 text-center">
         <h1 className="font-heading text-4xl font-bold leading-tight sm:text-6xl">
-          The Daily Doodle <span aria-hidden>📰</span>
+          The Apple Times <span aria-hidden>🍎</span>
         </h1>
         <p className="mt-1 text-base opacity-70 sm:text-lg">
-          yesterday&apos;s news, in my journal ✍️
+          daily news digest
         </p>
         <p className="font-heading mt-4 text-2xl sm:text-3xl">
           {prettyDate(edition.date)}
