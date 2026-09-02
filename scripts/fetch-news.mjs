@@ -27,6 +27,11 @@ const argv = process.argv.slice(2);
 const DRY_RUN = argv.includes("--dry-run") || process.env.DRY_RUN === "1";
 const dateArg = argv.find((a) => a.startsWith("--date="))?.split("=")[1];
 const TARGET_DATE = dateArg || process.env.TARGET_DATE || yesterdayIST();
+// --sections=tech,finance → backfill only these sections (leaves others untouched)
+const sectionsArg = argv.find((a) => a.startsWith("--sections="))?.split("=")[1];
+const SECTIONS_FILTER = sectionsArg
+  ? sectionsArg.split(",").map((s) => s.trim()).filter(Boolean)
+  : null;
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -205,6 +210,7 @@ let editionPartial = false;
 const records = [];
 
 for (const [key, cfg] of Object.entries(SECTIONS)) {
+  if (SECTIONS_FILTER && !SECTIONS_FILTER.includes(key)) continue;
   process.stdout.write(`• ${key}: `);
   const { picked, anyFailed } = await buildSection(key, cfg);
   if (anyFailed) editionPartial = true;
@@ -252,7 +258,10 @@ const status = editionPartial ? "partial" : "complete";
 let err;
 ({ error: err } = await supabase.from("editions").upsert({ date: TARGET_DATE, status }));
 if (err) throw err;
-({ error: err } = await supabase.from("articles").delete().eq("edition_date", TARGET_DATE));
+// backfill mode deletes only the targeted sections; full mode clears the whole day
+let del = supabase.from("articles").delete().eq("edition_date", TARGET_DATE);
+if (SECTIONS_FILTER) del = del.in("section", SECTIONS_FILTER);
+({ error: err } = await del);
 if (err) throw err;
 ({ error: err } = await supabase.from("articles").insert(records));
 if (err) throw err;
