@@ -14,14 +14,7 @@ export function getSupabase(): SupabaseClient {
     if (!url || !anonKey) {
       throw new Error("Supabase env vars missing (NEXT_PUBLIC_SUPABASE_URL / _ANON_KEY)");
     }
-    client = createClient(url, anonKey, {
-      auth: { persistSession: false },
-      // Never let Next.js cache the DB reads — editions get backfilled/recompiled,
-      // so a stale Data Cache would show wrong sections. Always read live.
-      global: {
-        fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
-      },
-    });
+    client = createClient(url, anonKey, { auth: { persistSession: false } });
   }
   return client;
 }
