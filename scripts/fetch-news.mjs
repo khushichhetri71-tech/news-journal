@@ -60,6 +60,14 @@ function titleHash(t) {
 function sourceFromUrl(url) {
   const u = (url || "").toLowerCase();
   if (u.includes("thehindu")) return "The Hindu";
+  if (u.includes("moneycontrol")) return "Moneycontrol";
+  if (u.includes("economictimes")) return "Economic Times";
+  if (u.includes("livemint")) return "Mint";
+  if (u.includes("business-standard")) return "Business Standard";
+  if (u.includes("ndtvprofit")) return "NDTV Profit";
+  if (u.includes("cnbc")) return "CNBC";
+  if (u.includes("reuters")) return "Reuters";
+  if (u.includes("investing.com")) return "Investing.com";
   if (u.includes("ndtv")) return "NDTV";
   if (u.includes("timesofindia") || u.includes("indiatimes")) return "Times of India";
   if (u.includes("bbc")) return "BBC News";

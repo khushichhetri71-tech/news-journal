@@ -13,7 +13,10 @@ export type SketchName =
   | "chakra"
   | "laptop"
   | "robot"
-  | "chip";
+  | "chip"
+  | "chartup"
+  | "bars"
+  | "coins";
 
 // Hand-drawn-style doodles, one stroke colour (currentColor) so each
 // section tints its own sketches via the accent colour.
@@ -145,6 +148,29 @@ const PATHS: Record<SketchName, React.ReactNode> = {
       <path d="M26 44 v6 M32 44 v6 M38 44 v6" />
       <path d="M20 26 h-6 M20 32 h-6 M20 38 h-6" />
       <path d="M44 26 h6 M44 32 h6 M44 38 h6" />
+    </>
+  ),
+  chartup: (
+    <>
+      <path d="M12 50 h44 M12 50 v-40" />
+      <path d="M17 44 L27 33 L35 39 L49 18" />
+      <path d="M43 18 L49 18 L49 24" />
+    </>
+  ),
+  bars: (
+    <>
+      <path d="M10 52 h46" />
+      <rect x="15" y="38" width="8" height="14" />
+      <rect x="28" y="28" width="8" height="24" />
+      <rect x="41" y="16" width="8" height="36" />
+    </>
+  ),
+  coins: (
+    <>
+      <ellipse cx="32" cy="42" rx="15" ry="5" />
+      <ellipse cx="32" cy="34" rx="15" ry="5" />
+      <ellipse cx="32" cy="26" rx="15" ry="5" />
+      <path d="M17 26 v16 M47 26 v16" />
     </>
   ),
 };
