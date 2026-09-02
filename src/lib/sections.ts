@@ -60,6 +60,17 @@ export const SECTIONS: Record<SectionKey, SectionConfig> = {
     },
     sketches: ["jet", "tank", "ship"],
   },
+  tech: {
+    label: "Tech",
+    emoji: "💻",
+    theme: {
+      bg: "#ECE3F7",
+      header: "#D9C7EE",
+      accent: "#7A4FB0",
+      rule: "rgba(122, 79, 176, 0.16)",
+    },
+    sketches: ["laptop", "robot", "chip"],
+  },
 };
 
 /** Sections in the order they appear on the page. */
@@ -68,4 +79,5 @@ export const SECTION_ORDER: SectionKey[] = [
   "international",
   "sports",
   "defence",
+  "tech",
 ];

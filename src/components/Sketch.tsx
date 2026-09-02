@@ -10,7 +10,10 @@ export type SketchName =
   | "eiffel"
   | "indiagate"
   | "flag"
-  | "chakra";
+  | "chakra"
+  | "laptop"
+  | "robot"
+  | "chip";
 
 // Hand-drawn-style doodles, one stroke colour (currentColor) so each
 // section tints its own sketches via the accent colour.
@@ -114,6 +117,34 @@ const PATHS: Record<SketchName, React.ReactNode> = {
       <circle cx="32" cy="32" r="21" />
       <circle cx="32" cy="32" r="3" />
       <path d="M32 11 v10 M32 43 v10 M11 32 h10 M43 32 h10 M17 17 l7 7 M40 40 l7 7 M47 17 l-7 7 M24 40 l-7 7" />
+    </>
+  ),
+  laptop: (
+    <>
+      <rect x="16" y="12" width="32" height="22" rx="2" />
+      <path d="M10 46 L16 34 h32 l6 12 z" />
+      <path d="M25 46 h14" />
+    </>
+  ),
+  robot: (
+    <>
+      <rect x="18" y="24" width="28" height="22" rx="3" />
+      <circle cx="27" cy="34" r="2.5" />
+      <circle cx="37" cy="34" r="2.5" />
+      <path d="M27 41 h10" />
+      <path d="M32 24 v-6" />
+      <circle cx="32" cy="15" r="2" />
+      <path d="M18 32 h-5 M46 32 h5" />
+    </>
+  ),
+  chip: (
+    <>
+      <rect x="20" y="20" width="24" height="24" rx="2" />
+      <rect x="28" y="28" width="8" height="8" />
+      <path d="M26 20 v-6 M32 20 v-6 M38 20 v-6" />
+      <path d="M26 44 v6 M32 44 v6 M38 44 v6" />
+      <path d="M20 26 h-6 M20 32 h-6 M20 38 h-6" />
+      <path d="M44 26 h6 M44 32 h6 M44 38 h6" />
     </>
   ),
 };

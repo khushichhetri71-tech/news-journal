@@ -29,6 +29,14 @@
         "https://idrw.org/feed/",
         "https://www.livefistdefence.com/feed"
       ]
+    },
+    "tech": {
+      "directFeeds": [
+        "https://feeds.bbci.co.uk/news/technology/rss.xml",
+        "https://www.thehindu.com/sci-tech/technology/feeder/default.rss",
+        "https://timesofindia.indiatimes.com/rssfeeds/66949542.cms",
+        "https://feeds.feedburner.com/gadgets360-latest"
+      ]
     }
   },
   "perSection": 7

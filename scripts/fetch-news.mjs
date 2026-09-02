@@ -65,6 +65,7 @@ function sourceFromUrl(url) {
   if (u.includes("bbc")) return "BBC News";
   if (u.includes("idrw")) return "idrw.org";
   if (u.includes("livefist")) return "Livefist";
+  if (u.includes("gadgets360")) return "Gadgets360";
   try {
     return new URL(url).hostname.replace(/^www\./, "");
   } catch {

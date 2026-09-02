@@ -3,6 +3,7 @@ export const SECTION_KEYS = [
   "international",
   "sports",
   "defence",
+  "tech",
 ] as const;
 
 export type SectionKey = (typeof SECTION_KEYS)[number];

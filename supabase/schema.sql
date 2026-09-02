@@ -12,7 +12,7 @@ create table if not exists editions (
 create table if not exists articles (
   id           uuid primary key default gen_random_uuid(),
   edition_date date not null references editions(date) on delete cascade,
-  section      text not null check (section in ('national','international','sports','defence')),
+  section      text not null check (section in ('national','international','sports','defence','tech')),
   title        text not null,
   summary      text not null,           -- 3–4 complete sentences (the whole story)
   source_name  text not null,
