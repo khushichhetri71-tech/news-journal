@@ -29,11 +29,13 @@ export default function EditionView({
       </header>
 
       <div className="grid min-w-0 grid-cols-2 gap-4 sm:gap-8">
-        {SECTION_ORDER.map((key, i) => (
+        {SECTION_ORDER.filter(
+          (key) => (edition.sections[key]?.length ?? 0) > 0,
+        ).map((key, i) => (
           <SectionCard
             key={key}
             section={key}
-            articles={edition.sections[key] ?? []}
+            articles={edition.sections[key]}
             date={edition.date}
             tilt={i}
           />
