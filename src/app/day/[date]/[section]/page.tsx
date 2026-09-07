@@ -52,7 +52,7 @@ export default async function SectionPage({
         {prettyDate(date)}
       </p>
 
-      <SectionNote section={section} articles={articles} tilt={0} />
+      <SectionNote section={section} articles={articles} date={date} tilt={0} />
 
       <div className="mt-8 text-center">
         <Link

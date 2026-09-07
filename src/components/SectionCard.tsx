@@ -54,9 +54,7 @@ export default function SectionCard({
         />
         {preview.map((a, i) => (
           <p key={i} className="mb-1.5 flex min-w-0 gap-2">
-            <span className="bullet shrink-0" aria-hidden>
-              ✓
-            </span>
+            <span className="bullet shrink-0" aria-hidden></span>
             <span className="line-clamp-2 min-w-0 break-words [overflow-wrap:anywhere] text-[var(--note-accent)]">
               {a.title}
             </span>

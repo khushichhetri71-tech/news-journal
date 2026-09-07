@@ -104,12 +104,62 @@ body {
   width: 18px;
   height: 18px;
   margin-right: 8px;
+  padding: 0;
   vertical-align: -3px;
+  font-family: inherit;
   font-size: 12px;
   color: var(--note-accent);
   border: 1.5px solid var(--note-accent);
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.55);
+}
+/* interactive checkbox variant (on section pages) */
+button.bullet {
+  cursor: pointer;
+  transition:
+    transform 0.1s ease,
+    background 0.15s ease;
+}
+button.bullet:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: scale(1.15);
+}
+
+/* "all read" bits */
+.caught-up {
+  font-family: var(--font-hand), cursive;
+  font-size: 0.9rem;
+  color: var(--note-accent);
+  border: 1.5px dashed var(--note-accent);
+  border-radius: 8px;
+  padding: 1px 8px;
+  transform: rotate(-3deg);
+  white-space: nowrap;
+}
+.caught-up-banner {
+  margin-top: 6px;
+  padding-top: 14px;
+  text-align: center;
+  font-family: var(--font-hand), cursive;
+  font-size: 1.15rem;
+  color: var(--note-accent);
+  border-top: 2px dashed var(--note-rule);
+}
+.reading-tracker {
+  margin: 0 auto 26px;
+  text-align: center;
+}
+.caught-up-day {
+  display: inline-block;
+  font-family: var(--font-heading), cursive;
+  font-size: 1.6rem;
+  color: #2e7d51;
+  background: #eafaf0;
+  border: 2px dashed #8fd3ab;
+  border-radius: 14px;
+  padding: 8px 22px;
+  transform: rotate(-1deg);
+  box-shadow: 2px 3px 0 rgba(143, 211, 171, 0.45);
 }
 
 /* ── navigation loader: a pencil scribbling a wavy line ───────────────────── */

@@ -1,5 +1,8 @@
+"use client";
+
 import Sketch from "./Sketch";
 import { SECTIONS } from "@/lib/sections";
+import { useSectionReading } from "@/lib/reading";
 import type { Article, SectionKey } from "@/lib/types";
 
 // Entries at these positions get a doodle (3rd, 5th, 7th — 0-indexed).
@@ -8,13 +11,20 @@ const SKETCH_AT = [2, 4, 6];
 export default function SectionNote({
   section,
   articles,
+  date,
   tilt,
 }: {
   section: SectionKey;
   articles: Article[];
+  date: string;
   tilt: number;
 }) {
   const { label, emoji, theme, sketches } = SECTIONS[section];
+  const { read, toggle, allRead } = useSectionReading(
+    date,
+    section,
+    articles.length,
+  );
 
   const noteVars = {
     "--note-bg": theme.bg,
@@ -38,6 +48,11 @@ export default function SectionNote({
         <h2 className="font-heading text-3xl font-bold tracking-wide text-[var(--note-accent)]">
           {label}
         </h2>
+        {allRead && (
+          <span className="caught-up ml-auto" aria-hidden>
+            ✓ all read!
+          </span>
+        )}
       </header>
 
       <div className="note-body rounded-b-2xl pb-[28px] pl-12 pr-5 pt-[28px]">
@@ -45,9 +60,15 @@ export default function SectionNote({
           const sketchIdx = SKETCH_AT.indexOf(i);
           const sketch =
             sketchIdx >= 0 ? sketches[sketchIdx % sketches.length] : null;
+          const isRead = read.includes(i);
 
           return (
-            <div key={i} className="mb-[28px] last:mb-0">
+            <div
+              key={i}
+              className={`mb-[28px] transition-opacity last:mb-0 ${
+                isRead ? "opacity-55" : ""
+              }`}
+            >
               {sketch && (
                 <Sketch
                   name={sketch}
@@ -55,12 +76,18 @@ export default function SectionNote({
                 />
               )}
               <p>
-                <span className="bullet" aria-hidden>
-                  ✓
-                </span>
-                <strong className="text-[var(--note-accent)]">
-                  {a.title}:
-                </strong>{" "}
+                <button
+                  type="button"
+                  onClick={() => toggle(i)}
+                  aria-pressed={isRead}
+                  aria-label={
+                    isRead ? `Mark "${a.title}" unread` : `Mark "${a.title}" read`
+                  }
+                  className="bullet"
+                >
+                  {isRead ? "✓" : ""}
+                </button>
+                <strong className="text-[var(--note-accent)]">{a.title}:</strong>{" "}
                 {a.summary}{" "}
                 <a
                   href={a.source_url}
@@ -77,6 +104,12 @@ export default function SectionNote({
             </div>
           );
         })}
+
+        {allRead && (
+          <div className="caught-up-banner" role="status">
+            🎉 You&apos;ve read all of {label}!
+          </div>
+        )}
       </div>
     </section>
   );
