@@ -97,10 +97,21 @@ function splitTitleSource(rawTitle, fallbackSource) {
 function cleanSnippet(s = "") {
   return s.replace(/\s+/g, " ").replace(/<[^>]*>/g, "").trim();
 }
-function firstSentences(text, n = 4) {
-  const parts = text.replace(/\s+/g, " ").trim().match(/[^.!?]+[.!?]+/g);
-  if (!parts) return text.trim();
-  return parts.slice(0, n).join(" ").trim();
+// A clean, complete brief straight from the feed's own description. Trimmed at
+// a sentence/word boundary so it never cuts mid-word. (The old sentence-splitter
+// broke on abbreviations like "Rs." / "U.K." / initials and returned fragments.)
+function clampText(text, max = 400) {
+  const t = (text || "").replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max + 1);
+  const stop = Math.max(
+    cut.lastIndexOf(". "),
+    cut.lastIndexOf("! "),
+    cut.lastIndexOf("? "),
+  );
+  if (stop > max * 0.5) return cut.slice(0, stop + 1).trim();
+  const sp = cut.lastIndexOf(" ");
+  return (sp > 0 ? cut.slice(0, sp) : cut.slice(0, max)).trim() + "…";
 }
 
 function googleNewsUrl(query) {
@@ -129,8 +140,14 @@ async function fetchFeed(url) {
 
 // ── summarize with Gemini, fall back to the snippet ──────────────────────────
 async function summarize(title, snippet) {
-  const base = snippet && snippet.length > 40 ? snippet : title;
-  if (!GEMINI_KEY) return firstSentences(base, 4);
+  const clean = clampText(snippet || "");
+  // Outlets' own descriptions are already clean, accurate briefs. When one is
+  // substantial, use it directly — this keeps every section consistent, instant
+  // and free. Only fall to Gemini to flesh out a thin description.
+  if (clean.length >= 100) return clean;
+
+  const base = clean.length > 40 ? clean : title;
+  if (!GEMINI_KEY) return base;
 
   const prompt =
     `Rewrite this Indian news item as a self-contained brief of 3 to 4 complete sentences ` +
@@ -163,11 +180,11 @@ async function summarize(title, snippet) {
     } catch (err) {
       if (attempt === 2) {
         console.warn(`  ⚠ summarize fell back to snippet: ${err.message}`);
-        return firstSentences(base, 4);
+        return clampText(base);
       }
     }
   }
-  return firstSentences(base, 4);
+  return clampText(base);
 }
 
 // ── build one section ────────────────────────────────────────────────────────
@@ -194,9 +211,13 @@ async function buildSection(key, cfg) {
     unique.push({ ...it, title, source, hash: h });
   }
 
-  // newest first, take the top N
+  // newest first, but prefer stories that come with a real description so every
+  // card reads well; thin-description items only fill in if we're short.
   unique.sort((a, b) => new Date(b.isoDate) - new Date(a.isoDate));
-  return { picked: unique.slice(0, PER_SECTION), anyFailed };
+  const rich = unique.filter((it) => (it.snippet || "").length >= 100);
+  const thin = unique.filter((it) => (it.snippet || "").length < 100);
+  const picked = [...rich, ...thin].slice(0, PER_SECTION);
+  return { picked, anyFailed };
 }
 
 // ── main ─────────────────────────────────────────────────────────────────────
