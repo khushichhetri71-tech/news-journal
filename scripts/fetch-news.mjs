@@ -292,7 +292,12 @@ let del = supabase.from("articles").delete().eq("edition_date", TARGET_DATE);
 if (SECTIONS_FILTER) del = del.in("section", SECTIONS_FILTER);
 ({ error: err } = await del);
 if (err) throw err;
-({ error: err } = await supabase.from("articles").insert(records));
+// upsert-ignore: if a story is already saved under another section for this day
+// (e.g. a backfill that overlaps an existing row on (edition_date, title_hash)),
+// skip it instead of crashing the whole batch on the unique index.
+({ error: err } = await supabase
+  .from("articles")
+  .upsert(records, { onConflict: "edition_date,title_hash", ignoreDuplicates: true }));
 if (err) throw err;
 
 console.log(`\n✅ Wrote edition ${TARGET_DATE} (${status}) — ${records.length} stories.\n`);
