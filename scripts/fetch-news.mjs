@@ -188,7 +188,7 @@ async function summarize(title, snippet) {
 }
 
 // ── build one section ────────────────────────────────────────────────────────
-async function buildSection(key, cfg) {
+async function buildSection(key, cfg, takenHashes) {
   const urls = [];
   if (cfg.query) urls.push(googleNewsUrl(cfg.query));
   urls.push(...(cfg.directFeeds || []));
@@ -206,7 +206,10 @@ async function buildSection(key, cfg) {
     const { title, source } = splitTitleSource(it.rawTitle, it.sourceHint);
     if (!title || title.length < 12) continue;
     const h = titleHash(title);
-    if (seen.has(h)) continue;
+    // skip within-section dupes AND stories already claimed by an earlier section:
+    // (edition_date, title_hash) is unique across the whole edition, so the same
+    // headline surfacing in two sections would otherwise crash the batch insert.
+    if (seen.has(h) || takenHashes.has(h)) continue;
     seen.add(h);
     unique.push({ ...it, title, source, hash: h });
   }
@@ -217,6 +220,8 @@ async function buildSection(key, cfg) {
   const rich = unique.filter((it) => (it.snippet || "").length >= 100);
   const thin = unique.filter((it) => (it.snippet || "").length < 100);
   const picked = [...rich, ...thin].slice(0, PER_SECTION);
+  // claim the picked hashes so later sections can't repeat these stories
+  for (const it of picked) takenHashes.add(it.hash);
   return { picked, anyFailed };
 }
 
@@ -229,11 +234,14 @@ console.log(`\n📰 Compiling edition for ${TARGET_DATE} (IST)${DRY_RUN ? "  [DR
 
 let editionPartial = false;
 const records = [];
+// title hashes already used in this edition, shared across sections so a story
+// that appears in two feeds is kept once (guards the (edition_date, title_hash) index)
+const takenHashes = new Set();
 
 for (const [key, cfg] of Object.entries(SECTIONS)) {
   if (SECTIONS_FILTER && !SECTIONS_FILTER.includes(key)) continue;
   process.stdout.write(`• ${key}: `);
-  const { picked, anyFailed } = await buildSection(key, cfg);
+  const { picked, anyFailed } = await buildSection(key, cfg, takenHashes);
   if (anyFailed) editionPartial = true;
   console.log(`${picked.length} stories`);
 
